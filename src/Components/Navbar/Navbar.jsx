@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Logo1 from '../../assets/logo1.png'
-import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { RxCross2 } from "react-icons/rx";
 import Darkmode from './Darkmode';
 
 const NavLinks = [
@@ -27,8 +28,11 @@ const Navbar = () => {
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     }
+    const closeMenu = () => {
+        setShowMenu(showMenu)
+    }
   return (
-    <div className='revelative z-[9999] text-black dark:text-white duration-300'>
+    <div className='relative z-[9999] text-black dark:text-white duration-300'>
         <div className='container py-2 md:py-0'>
             <div className='flex justify-between items-center'>
                 {/* logo section  */}
@@ -62,15 +66,21 @@ const Navbar = () => {
                     <Darkmode />
                     <div className='md:hidden'>
                     {showMenu ? 
-                        <HiMenuAlt1 onClick={toggleMenu}
-                        className='cursor-pointer size={30}'/> :
+                        <RxCross2 onClick={toggleMenu}
+                        className='cursor-pointer 'size={30} /> :
                          <HiMenuAlt3 onClick={toggleMenu}
-                         className='cursor-pointer size={30}'/>}
+                         className='cursor-pointer 'size={30} />}
                     </div>
                         
                     </div>
                 
             </div>
+            <div className={`${showMenu?'translate-x-0':'-translate-x-full'} absolute top-[100px] right-0 w-full transition-transform duration-500 h-[250px]  bg-black  z-[-1] text-white  p-8`}>
+                <div className="flex flex-col justify-center text-2xl">
+                <a href="" className="font-light capitalize" onClick={closeMenu}>Home</a>
+                <a href="" className="font-light capitalize" onClick={closeMenu}>About</a>
+             </div>
+        </div>
         </div>
     </div>
   )
