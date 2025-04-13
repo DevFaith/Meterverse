@@ -1,4 +1,5 @@
 import React from 'react'
+import GoogleMapReact from 'google-map-react';
 import{
     FaFacebook,
     FaTwitter,
@@ -35,6 +36,12 @@ const FooterLinks = [
         link: "/#blog",
     }
 ]
+
+const defaultProps = {
+    center: { lat: -1.2661249, lng: 36.7974347 },
+    zoom: 11
+  };
+  const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const Footer = () => {
   return (
@@ -137,6 +144,16 @@ const Footer = () => {
                       </div>
                 </div>
             </div>
+            <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyDNdPKUi_32y2rbx15sL8Yl73PjmlW8wZY" }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        <AnyReactComponent
+        {...defaultProps.center}
+          text="My Marker"
+        />
+      </GoogleMapReact>
         </div>
     </>
   )
